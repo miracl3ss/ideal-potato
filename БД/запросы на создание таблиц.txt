@@ -1,0 +1,81 @@
+CREATE TABLE TB_building (
+    ID_object INTEGER PRIMARY KEY,
+    Object INTEGER,
+    City INTEGER,
+    Street INTEGER,
+    "Building number" TINYINT,
+    "Apartment number" TINYINT,
+    space TINYINT,
+    description TEXT,
+    rent BOOLEAN,
+    FOREIGN KEY (Object) REFERENCES "TB_typeOfObject(ID_typeOfObject),
+    FOREIGN KEY (City) REFERENCES TB_city(ID_city),
+    FOREIGN KEY (Street) REFERENCES TB_street(ID_street)
+);
+
+CREATE TABLE "TB_typeOfObject" (
+    ID_typeOfObject INTEGER PRIMARY KEY,
+    "Type Of Object" TEXT
+);
+
+CREATE TABLE TB_city (
+    ID_city INTEGER PRIMARY KEY,
+    City_name TEXT
+);
+
+CREATE TABLE TB_street (
+    ID_street INTEGER PRIMARY KEY,
+    Street TEXT
+);
+
+CREATE TABLE TB_client (
+    ID_client INTEGER PRIMARY KEY,
+    "Last Name" TEXT,
+    "First Name" TEXT,
+    Patronymic TEXT,
+    DateOfBirth DATE,
+    City INTEGER,
+    Street INTEGER,
+    buildingNumber TINYINT,
+    apartmentNumber TINYINT,
+    contactNumber CHAR(11),
+    FOREIGN KEY (City) REFERENCES Город1(ID_city),
+    FOREIGN KEY (Street) REFERENCES Улица1(ID_street)
+
+CREATE TABLE TB_typeOfContract (
+    ID_typeOfContract INTEGER PRIMARY KEY,
+    typeOfContract TEXT
+);
+
+CREATE TABLE TB_employee (
+    ID_employee INTEGER PRIMARY KEY,
+    Emp_LastName TEXT,
+    Emp_FirstName TEXT,
+    Emp_Patronymic TEXT,
+    Emp_dateOfBirth DATE,
+    Emp_post INTEGER,
+    FOREIGN KEY (Emp_post) REFERENCES TB_post(ID_post)
+);
+
+CREATE TABLE TB_post (
+    ID_post INTEGER PRIMARY KEY,
+    post TEXT
+);
+
+CREATE TABLE TB_contract (
+    IDcontract INTEGER PRIMARY KEY,
+    IDobject INTEGER,
+    IDclient INTEGER,
+    typeOfContract INTEGER,
+    rentalPeriod INTEGER,
+    valueTransaction INTEGER,
+    IDemployee INTEGER,
+    dateRegistrationTransaction DATE,
+    FOREIGN KEY (IDobject) REFERENCES TB_building(ID_object),
+    FOREIGN KEY (IDclient) REFERENCES TB_client(ID_client),
+    FOREIGN KEY (typeOfContract) REFERENCES "TB_typeOfObject"(ID_typeOfObject),
+    FOREIGN KEY (IDemployee) REFERENCES TB_employee(ID_client)
+);
+
+
+);
