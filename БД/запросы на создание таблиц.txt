@@ -13,7 +13,7 @@ CREATE TABLE TB_building (
     FOREIGN KEY (Street) REFERENCES TB_street(ID_street)
 );
 
-CREATE TABLE "TB_typeOfObject" (
+CREATE TABLE TB_typeOfObject (
     ID_typeOfObject INTEGER PRIMARY KEY,
     "Type Of Object" TEXT
 );
@@ -32,6 +32,52 @@ CREATE TABLE TB_client (
     ID_client INTEGER PRIMARY KEY,
     "Last Name" TEXT,
     "First Name" TEXT,
+CREATE TABLE TB_typeOfObject (
+    ID_typeOfObject INTEGER PRIMARY KEY,
+    typeOfObject TEXT
+);
+
+CREATE TABLE TB_city (
+    ID_city INTEGER PRIMARY KEY,
+    City_name TEXT
+);
+
+CREATE TABLE TB_street (
+    ID_street INTEGER PRIMARY KEY,
+    Street TEXT
+);
+
+CREATE TABLE TB_post (
+    ID_post INTEGER PRIMARY KEY,
+    post TEXT
+);
+
+CREATE TABLE TB_typeOfContract (
+    ID_typeOfContract INTEGER PRIMARY KEY,
+    typeOfContract TEXT
+);
+
+CREATE TABLE TB_building (
+    ID_object INTEGER PRIMARY KEY,
+    Object INTEGER,
+    City INTEGER,
+    Street INTEGER,
+    buildingNum TINYINT,
+    apartmentNum TINYINT,
+    space TINYINT,
+    description TEXT,
+    rent BOOLEAN,
+    FOREIGN KEY (Object) REFERENCES TB_typeOfObject(ID_typeOfObject),
+    FOREIGN KEY (City) REFERENCES TB_city(ID_city),
+    FOREIGN KEY (Street) REFERENCES TB_street(ID_street)
+);
+
+
+
+CREATE TABLE TB_client (
+    ID_client INTEGER PRIMARY KEY,
+    LastName TEXT,
+    FirstName TEXT,
     Patronymic TEXT,
     DateOfBirth DATE,
     City INTEGER,
@@ -39,13 +85,10 @@ CREATE TABLE TB_client (
     buildingNumber TINYINT,
     apartmentNumber TINYINT,
     contactNumber CHAR(11),
-    FOREIGN KEY (City) REFERENCES Город1(ID_city),
-    FOREIGN KEY (Street) REFERENCES Улица1(ID_street)
-
-CREATE TABLE TB_typeOfContract (
-    ID_typeOfContract INTEGER PRIMARY KEY,
-    typeOfContract TEXT
+    FOREIGN KEY (City) REFERENCES TB_city(ID_city),
+    FOREIGN KEY (Street) REFERENCES TB_street(ID_street)
 );
+
 
 CREATE TABLE TB_employee (
     ID_employee INTEGER PRIMARY KEY,
@@ -57,10 +100,7 @@ CREATE TABLE TB_employee (
     FOREIGN KEY (Emp_post) REFERENCES TB_post(ID_post)
 );
 
-CREATE TABLE TB_post (
-    ID_post INTEGER PRIMARY KEY,
-    post TEXT
-);
+
 
 CREATE TABLE TB_contract (
     IDcontract INTEGER PRIMARY KEY,
@@ -73,9 +113,84 @@ CREATE TABLE TB_contract (
     dateRegistrationTransaction DATE,
     FOREIGN KEY (IDobject) REFERENCES TB_building(ID_object),
     FOREIGN KEY (IDclient) REFERENCES TB_client(ID_client),
-    FOREIGN KEY (typeOfContract) REFERENCES "TB_typeOfObject"(ID_typeOfObject),
-    FOREIGN KEY (IDemployee) REFERENCES TB_employee(ID_client)
+    FOREIGN KEY (typeOfContract) REFERENCES TB_typeOfObject(ID_typeOfObject),
+    FOREIGN KEY (IDemployee) REFERENCES TB_employee(ID_employee)
 );
 
+INSERT INTO TB_typeOfObject VALUES (1, "Apartment");
+INSERT INTO TB_typeOfObject VALUES (2, "Cottage");
+INSERT INTO TB_typeOfObject VALUES (3, "House");
 
-);
+INSERT INTO TB_city VALUES (1, "Velikiy Novgorod");
+INSERT INTO TB_city VALUES (2, "Saint-Petersburg");
+INSERT INTO TB_city VALUES (3, "Moskow");
+INSERT INTO TB_city VALUES (4, "Lodeynoe Pole");
+INSERT INTO TB_city VALUES (5, "Kazan");
+
+INSERT INTO TB_street VALUES (1, "Mira");
+INSERT INTO TB_street VALUES (2, "Lenina");
+INSERT INTO TB_street VALUES (3, "Uritskogo");
+INSERT INTO TB_street VALUES (4, "Popova");
+INSERT INTO TB_street VALUES (5, "Lomonosova");
+
+INSERT INTO TB_post VALUES (1, "Administrator");
+INSERT INTO TB_post VALUES (2, "Moderator");
+INSERT INTO TB_post VALUES (3, "Realtor");
+INSERT INTO TB_post VALUES (4, "Accountant");
+INSERT INTO TB_post VALUES (5, "Lawyer");
+
+INSERT INTO TB_typeOfContract VALUES (1, "Contract for paid services");
+INSERT INTO TB_typeOfContract VALUES (2, "Contract of agency");
+
+INSERT INTO TB_building VALUES (1, 1, 3, 2, 123, 99, 100, "Квартира за МКАДом с натяжными потолками и без санузлов", false);
+INSERT INTO TB_building VALUES (2, 1, 2, 3, 112, 100, 10, "Квартира в центре города в 30 метрах от станции метро", true);
+INSERT INTO TB_building VALUES (3, 3, 5, 1, 13, 1, 125, "Дом в деревне, продаем за ненадобностью", false);
+INSERT INTO TB_building VALUES (4, 1, 1, 4, 10, 30, 30, "Квартира у политехнического колледжа. Идеально для студентов!", true);
+INSERT INTO TB_building VALUES (5, 2, 4, 5, 102, 1, 125, "Маленький коттедж загородный с новым ремонтом", false);
+
+INSERT INTO TB_client VALUES (1, "Фареста", "Клавдия", "Прохоровна", '1967-11-11', 1, 2, 5, 10, 89213426743);
+INSERT INTO TB_client VALUES (2, "Букирь", "Иван", "Ефремович", '1978-11-07', 2, 3, 2, 20, 89814796217);
+INSERT INTO TB_client VALUES (3, "Юрнаева", "Анна", "Иннокентьевна", '1987-02-02', 3, 2, 4, 6, 89383776758);
+INSERT INTO TB_client VALUES (4, "Сергеева", "Марфа", "Прохоровна", '1963-02-04', 4, 5, 12, 8, 89603582520);
+INSERT INTO TB_client VALUES (5, "Лаер", "Оксана", "Гермоновна", '1990-09-08', 5, 4, 42, 9, 89654611069);
+
+INSERT INTO TB_employee VALUES (1, "Давыдов", "Иван", "Олегович", '2000-10-10', 1);
+INSERT INTO TB_employee VALUES (2, "Кротких", "Дмитрий", "Артемыч", '1987-07-10', 2);
+INSERT INTO TB_employee VALUES (3, "Ломоносов", "Петр", "Геннадьевич", '1999-02-01', 5);
+INSERT INTO TB_employee VALUES (4, "Краузе", "Александр", "Владимирович", '1990-09-08', 4);
+INSERT INTO TB_employee VALUES (5, "Смирнов", "Олег", "Александрович", '1982-12-9', 3);
+
+INSERT INTO TB_contract VALUES (1, 5, 1, 1, 14, 24400, 1, '2024-10-24');
+INSERT INTO TB_contract VALUES (2, 3, 2, 1, 3, 15000, 2, '2023-01-30');
+INSERT INTO TB_contract VALUES (3, 2, 4, 1, 2, 8000, 3, '2023-12-05');
+INSERT INTO TB_contract VALUES (4, 4, 5, 2, 0, 10000000, 4, '2024-03-02');
+INSERT INTO TB_contract VALUES (5, 1, 3, 1, 60, 90000, 5, '2022-11-10');
+
+SELECT * FROM TB_client;
+SELECT * FROM TB_building;
+
+SELECT 
+    TB_b.ID_object,
+    TB_b.description,
+    TB_tOO.typeOfObject,
+    TB_c.City_name,
+    TB_s.Street,
+    TB_b.buildingNum,
+    TB_b.apartmentNum,
+    TB_b.space
+FROM TB_building TB_b
+INNER JOIN (SELECT * FROM TB_typeOfObject) TB_tOO ON TB_b.Object = TB_tOO.ID_typeOfObject
+INNER JOIN (SELECT * FROM TB_city) TB_c ON TB_b.City = TB_c.ID_city
+INNER JOIN (SELECT * FROM TB_street) TB_s ON TB_b.Street = TB_s.ID_street
+WHERE TB_b.rent = TRUE;
+
+
+SELECT 
+    Emp.ID_employee,
+    Emp.Emp_LastName,
+    Emp.Emp_FirstName,
+    Emp.Emp_Patronymic,
+    Emp.Emp_dateOfBirth,
+    P.post
+FROM TB_employee Emp
+INNER JOIN TB_post P ON Emp.Emp_post = P.ID_post;
