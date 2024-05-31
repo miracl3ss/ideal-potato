@@ -1,7 +1,7 @@
 document.forms.formReg.onsubmit = async (e) => {
     e.preventDefault();
 
-    let response = await fetch('reg.php', {
+    let response = await fetch('regFunction.php', {
       method: 'POST',
       body: new FormData(document.forms.formReg)
     });

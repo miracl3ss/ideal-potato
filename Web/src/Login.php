@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userPassword = $_POST['userPassword'];
         try {
             require 'DBConnect.php';
-            // checking for valid user details 
             $SELECT__USER__DATA = "SELECT * FROM `users` WHERE users.username=:userName";
             $select__user__statement = $con->prepare($SELECT__USER__DATA);
             $select__user__statement->bindParam(':userName', $userName, PDO::PARAM_STR);
