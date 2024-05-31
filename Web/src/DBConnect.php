@@ -1,5 +1,5 @@
 <?php 
-require_once  'configurations.php';
+require_once  'Configurations.php';
 try {
     $con = new PDO(
         "mysql:host = $DATABASE_SERVER_IP;

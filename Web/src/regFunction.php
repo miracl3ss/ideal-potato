@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register page</title>
-</head>
-<body>
-    <form method="POST" id="register">
-        <input type="text" placeholder="full Name" name="fullName" id="name">
-        <input type="text" placeholder="phone Number" name="phoneNumber" id="phone">
-        <input type="text" placeholder="email" name="emailID" id="email">
-        <input type="text" placeholder="username" name="userName" id="login">
-        <input type="text" placeholder="password" name="userPassword" id="password">
-        <button id="btn-cta" type="submit">register</button>
-    </form>
-    <script src="../scripts/index.js"></script>
-</body>
-</html>
-
 <?php
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userPassword = $_POST['userPassword'];
         try {
             require 'DBConnect.php';
-            // check for duplicate user 
-            // here I am check for user email id for the same 
             $SELECT__USER__SQL = "SELECT * FROM `users` WHERE users.email_id=:emailID;";
             $duplicate__user__statement = $con->prepare($SELECT__USER__SQL);
             $duplicate__user__statement->bindParam(':emailID', $emailID, PDO::PARAM_STR);
@@ -48,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 );
                 echo json_encode($server__response__error);
             } else {
-                // insert/add new user details
-                // encrypt user password 
                 $password__hash = password_hash($userPassword, PASSWORD_DEFAULT);
                 $data__parameters = [
                     "fullName" => $_POST['fullName'],
@@ -58,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     "userName" => $_POST['userName'],
                     "userPassword" => $password__hash
                 ];
-                // insert data into the database
                 $SQL__INSERT__QUERY = "INSERT INTO `users`(
                                                         `full_name`,
                                                         `phone_number`,
@@ -101,16 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "message" => "Opps!! Something Went Wrong! " . $ex->getMessage()
             );
             echo json_encode($server__response__error);
-        } // end of try/catch
+        }
     } else {
         http_response_code(404);
         $server__response__error = array(
             "code" => http_response_code(404),
             "status" => false,
-            "message" => "Invalid API parameters! Please contact the administrator or refer to the documentation for assistance."
+            "message" => "Invalid API parameters!"
         );
         echo json_encode($server__response__error);
-    } // end of Parameters IF Condition
+    } 
 } else {
     http_response_code(404);
     $server__response__error = array(
