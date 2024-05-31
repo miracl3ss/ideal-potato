@@ -1,0 +1,5 @@
+<?php 
+   $DATABASE_SERVER_IP = "localhost"; 
+   $DATABASE_USER_NAME = "u969711v_a"; 
+   $DATABASE_USER_PASSWORD="BARbeCUE666"; 
+   $DATABASE_NAME="u969711v_a"; 
