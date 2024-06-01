@@ -2,8 +2,8 @@
 require_once  'Configurations.php';
 try {
     $con = new PDO(
-        "mysql:host = $DATABASE_SERVER_IP;
-         dbname = $DATABASE_NAME", 
+        "mysql:host=$DATABASE_SERVER_IP;
+         dbname=$DATABASE_NAME", 
          $DATABASE_USER_NAME, 
          $DATABASE_USER_PASSWORD
         );
