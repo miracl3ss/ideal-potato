@@ -15,9 +15,11 @@
         <a href="#">LET US GUIDE YOUR HOME</a>
         <p>We've more than 745,000 apartments, place & plot</p>
         <h1>Find Your Perfect Home</h1>
-        <form>
-            <input type="text" placeholder="Enter Name, Keywords...">
-        </form>
+        <section>
+            <input type="button" placeholder="apartments">
+            <input type="button" placeholder="cottage">
+            <input type="button" placeholder="house">
+        </section>
     </section>
 </body>
 <script src="scripts/index.js"></script>

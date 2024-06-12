@@ -1,14 +1,13 @@
-const formElem = document.getElementById("register")
+let apartment_redir = document.getElementById('apartmentBTN');
+let cottage_redir = document.getElementById('cottageBTN');
+let house_redir = document.getElementById('houseBTN');
 
-formElem.onsubmit = async (e) => {
-        e.preventDefault();
-    
-        let response = await fetch('regFunction.php', {
-          method: 'POST',
-          body: new FormData(formElem)
-        });
-    
-        let result = await response.json();
-    
-        alert(result.message);
-    };
+apartment_redir.addEventListener('click', () => {
+    window.location.replace();
+});
+cottage_redir.addEventListener('click', () => {
+    window.location.replace();
+});
+house_redir.addEventListener('click', () => {
+    window.location.replace();
+});

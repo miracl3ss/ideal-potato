@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userPassword = $_POST['userPassword'];
         try {
             require 'DBConnect.php';
+            require 'adminsUsernames.php';
             $SELECT__USER__DATA = "SELECT * FROM `users` WHERE users.username=:userName";
             $select__user__statement = $con->prepare($SELECT__USER__DATA);
             $select__user__statement->bindParam(':userName', $userName, PDO::PARAM_STR);
@@ -26,6 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "message" => "User Verified" ,
                         "userData"=>$user__object
                     );
+                    if (in_array($userName, $adminsUsernames, $strict = false)) {
+                        header("adminsPage.php");
+                    } else {
+                        header("accountPage.php");
+                    }
                     echo json_encode($server__response__success);
                 } else {
                     http_response_code(404);

@@ -14,6 +14,7 @@
         <input type="text" placeholder="password" name="userPassword" id="password">
         <button id="btn-cta" type="submit">register</button>
     </form>
+    <a href="login.php">Auth</a>
     <script src="../scripts/index.js"></script>
 </body>
 </html>
