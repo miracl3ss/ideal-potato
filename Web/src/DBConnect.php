@@ -1,5 +1,5 @@
 <?php 
-require_once  'Configurations.php';
+require_once  'configurations.php';
 try {
     $con = new PDO(
         "mysql:host=$DATABASE_SERVER_IP;
@@ -11,4 +11,3 @@ try {
   } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
   }
-?>
