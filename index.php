@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
     <header>
@@ -19,16 +19,9 @@
             <a href="src/filter.php" id="search">Search</a>
         </section>
     </section>
-    <section id="spons">
-        <h2>Thousands of world's leading companies trust Space</h2>
-        <article>
-            <img src="../images/amazon_spon.svg">
-            <img src="../images/amd_spon.svg">
-            <img src="../images/cisco_spon.svg">
-            <img src="../images/dropcam_spon.svg">
-            <img src="../images/logitech_spon.svg">
-            <img src="../images/spotify_spon.svg">
-        </article>
+    <section class="TRAVA" style="background: linear-gradient(#5da130, #192b0d);
+    min-height: 12vh;">
+
     </section>
 </body>
 <script src="scripts/index.js"></script>

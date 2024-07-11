@@ -1,4 +1,4 @@
-const formElem = document.getElementById("loginForm")
+const formElem = document.getElementById("register")
 
 formElem.onsubmit = async (e) => {
         e.preventDefault();
@@ -9,6 +9,9 @@ formElem.onsubmit = async (e) => {
         });
     
         let result = await response.json();
-    
-        alert(result.message);
+        if(result.message == 'User successfully created.') {
+            window.location.replace('http://u969711v.beget.tech/src/login.php');
+        } else {
+            alert(result.message);
+        };
     };

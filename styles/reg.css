@@ -7,9 +7,10 @@ body, html {
     font-size: 24px;
 }
 
-section {
+#main {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: auto auto;
@@ -40,4 +41,17 @@ form button {
     color: #000000;
     border-radius: 10px;
     background-color: #ee8fc6;
+}
+#buttons {
+    display: flex;
+    width: 30%;
+    justify-content:space-around;
+}
+a {
+    text-decoration: none;
+    color: #000;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 1vh 1vw;
+    
 }

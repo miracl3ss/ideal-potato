@@ -2,34 +2,39 @@
 header('Content-type: application/json');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (
-        !empty($_POST['typeOfObject']) && !empty($_POST['City']) && !empty($_POST['Street'])
-        && !empty($_POST['buildingNum']) && !empty($_POST['apartmentNum']) && !empty($_POST['space']) && !empty($_POST['description']) && !empty($_POST['buildingImg'])
+        true
     ) {
-        $ID_object = Null;
-        $typeOfObject = $_POST['typeOfObject'];
+        $typeOfObject_B = $_POST['typeOfObject'];
         $City = $_POST['city'];
         $Street = $_POST['street'];
         $buildingNum = $_POST['buildingNum'];
         $apartmentNum = $_POST['apartmentNum'];
         $space = $_POST['space'];
-        $descriptions = $_POST['description'];
+        $descriptions = $_POST['descriptions'];
         $rent = $_POST['rent'];
         $buildingImg = $_POST['buildingImg'];
         $image = $_POST['image'];
+        if (!empty($_POST['ID_object'])) {
+            $ID_object = $_POST['ID_object'];
+        } else {
+            $ID_object = date(dmyh);
+        }
         try {
             require 'DBConnect.php';
                 $data__parameters = [
-                    "typeOfObject" => $_POST['typeOfObject'],
+                    "ID_object" => $ID_object,
+                    "typeOfObject_B" => $_POST['typeOfObject'],
                     "City" => $_POST['city'],
                     "Street" => $_POST['street'],
                     "buildingNum" => $_POST['buildingNum'],
                     "apartmentNum" => $_POST['apartmentNum'],
                     "space" => $_POST['space'],
-                    "descriptions" => $_POST['description'],
+                    "descriptions" => $_POST['descriptions'],
                     "rent" => $_POST['rent'],
                     "buildingImg" => ('../images/' . $_POST['buildingImg']),
                 ];
                 $SQL__INSERT__QUERY = "INSERT INTO `TB_building`(
+                                                        `ID_object`,
                                                         `typeOfObject`,
                                                         `City`,
                                                         `Street`,
@@ -41,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                         `buildingImg`
                                                     )
                                                     VALUES(
-                                                        :typeOfObject,
+                                                        :ID_object,
+                                                        :typeOfObject_B,
                                                         :City,
                                                         :Street,
                                                         :buildingNum,

@@ -1,0 +1,44 @@
+html {
+    background: linear-gradient(#15093f, #3b4d9b);
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
+form {
+    background-color: #ab5bb4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh auto;
+    width: 30%;
+    border-radius: 30px;
+    padding: 2vh 2vw;
+    gap: 5px;
+}
+
+form h2 {
+    color: #fff;
+}
+form input, button {
+    padding: 1vh 1vw;
+    background-color: #ee8fc6;
+    border-radius: 10px;
+    color: #fff;
+}
+form button {
+    background-color: #ab2d76;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: center;
+    margin-bottom: 20px;
+}
+label select {
+    width: 200px;
+    color: #000;
+}
